@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { type LeaderboardEntry, mockApi } from "@/lib/mock-data"
@@ -12,7 +12,7 @@ import confetti from "canvas-confetti"
 export default function ResultsPage({ params }: { params: { categoryId: string } }) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { categoryId } = params
+  const { categoryId } = use<{ categoryId: string }>(params as unknown as any)
 
   const score = Number.parseInt(searchParams.get("score") || "0")
   const time = Number.parseFloat(searchParams.get("time") || "0")
